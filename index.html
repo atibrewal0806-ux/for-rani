@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 
@@ -7,27 +7,32 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
 
 <style>
-  body {{
+  body {
     background: linear-gradient(to right, #a18cd1, #fbc2eb);
     font-family: Arial, sans-serif;
     text-align: center;
     padding-top: 40px;
     color: black;
     overflow: hidden;
-  }}
+  }
 
-  h1 {{ font-weight: 800; }}
+  h1 {
+    font-weight: 800;
+  }
 
-  img {{
+  img {
     width: 260px;
     border-radius: 20px;
     margin: 20px 0;
     box-shadow: 0 10px 25px rgba(0,0,0,0.3);
-  }}
+  }
 
-  p {{ font-size: 18px; margin-bottom: 25px; }}
+  p {
+    font-size: 18px;
+    margin-bottom: 25px;
+  }
 
-  button {{
+  button {
     padding: 12px 28px;
     font-size: 18px;
     border-radius: 30px;
@@ -36,56 +41,56 @@
     margin: 10px;
     color: white;
     transition: transform 0.3s ease;
-  }}
+  }
 
-  .yes {{ background-color: #2ecc71; }}
-  .no {{ background-color: #e74c3c; }}
+  .yes { background-color: #2ecc71; }
+  .no  { background-color: #e74c3c; }
 
   /* Floating hearts */
-  .emoji {{
+  .emoji {
     position: fixed;
     bottom: -30px;
     font-size: 26px;
     animation: rise 5s linear forwards;
     pointer-events: none;
-  }}
+  }
 
-  @keyframes rise {{
-    from {{ transform: translateY(0); opacity: 1; }}
-    to {{ transform: translateY(-110vh); opacity: 0; }}
-  }}
+  @keyframes rise {
+    from { transform: translateY(0); opacity: 1; }
+    to   { transform: translateY(-110vh); opacity: 0; }
+  }
 
   /* Confetti */
-  .confetti {{
+  .confetti {
     position: fixed;
     top: -10px;
     width: 10px;
     height: 10px;
     animation: fall 3s linear forwards;
-  }}
+  }
 
-  @keyframes fall {{
-    to {{ transform: translateY(110vh) rotate(360deg); opacity: 0; }}
-  }}
+  @keyframes fall {
+    to { transform: translateY(110vh) rotate(360deg); opacity: 0; }
+  }
 
-  #yayPage {{
+  #yayPage {
     display: none;
     margin-top: 60px;
-  }}
+  }
 
-  #yayPage h1 {{
+  #yayPage h1 {
     font-size: 46px;
     color: #e84393;
     letter-spacing: 1px;
-  }}
+  }
 
-  .love-text {{
+  .love-text {
     font-family: 'Playfair Display', serif;
     font-size: 22px;
     line-height: 1.7;
     max-width: 650px;
     margin: 30px auto;
-  }}
+  }
 </style>
 </head>
 
@@ -95,7 +100,7 @@
 <div id="mainPage">
   <h1>Will you be my Valentine? 💖</h1>
 
-  <img src="data:image/jpeg;base64,{img_base64}" alt="Valentine Photo">
+  <img src="rani.jpg" alt="Rani">
 
   <p>
     Rani, from the very beginning,  
@@ -111,8 +116,9 @@
   <h1>I LOVE YOU RANI ❤️</h1>
 
   <p class="love-text">
-    Rani, it’s been **21 beautiful months** with you,  
-    and in all this time, you’ve become my constant, my comfort, and my favorite part of every day ❤️  
+    Rani, it’s been <b>21 beautiful months</b> with you,  
+    and in all this time, you’ve become my constant, my comfort,
+    and my favorite part of every day ❤️  
     <br><br>
     From our silly moments to our serious talks,  
     from laughs that hurt to quiet days that felt safe —  
@@ -130,19 +136,19 @@
 </div>
 
 <audio id="bgMusic" loop>
-  <source src="data:audio/mp3;base64,{music_base64}" type="audio/mp3">
+  <source src="music.mp3" type="audio/mp3">
 </audio>
 
 <script>
   let yesScale = 1;
 
-  function noClicked() {{
+  function noClicked() {
     yesScale += 0.25;
     document.getElementById("yesBtn").style.transform =
       "scale(" + yesScale + ")";
-  }}
+  }
 
-  function yesClicked() {{
+  function yesClicked() {
     document.getElementById("mainPage").style.display = "none";
     document.getElementById("yayPage").style.display = "block";
 
@@ -150,22 +156,22 @@
     music.volume = 0;
     music.play();
 
-    // fade in
+    // fade in music
     let v = 0;
-    const fade = setInterval(() => {{
+    const fade = setInterval(() => {
       v += 0.05;
       music.volume = v;
       if (v >= 1) clearInterval(fade);
-    }}, 200);
+    }, 200);
 
     // stop music after 1 minute
-    setTimeout(() => {{
+    setTimeout(() => {
       music.pause();
       music.currentTime = 0;
-    }}, 60000);
+    }, 60000);
 
-    // confetti blast
-    for (let i = 0; i < 120; i++) {{
+    // confetti
+    for (let i = 0; i < 120; i++) {
       const c = document.createElement("div");
       c.className = "confetti";
       c.style.left = Math.random() * 100 + "vw";
@@ -175,10 +181,10 @@
       c.style.animationDuration = (2 + Math.random() * 2) + "s";
       document.body.appendChild(c);
       setTimeout(() => c.remove(), 3000);
-    }}
-  }}
+    }
+  }
 
-  function createEmoji() {{
+  function createEmoji() {
     const e = document.createElement("div");
     e.className = "emoji";
     e.innerText = ["💖","❤️","💕","💘","😍"][Math.floor(Math.random()*5)];
@@ -186,7 +192,7 @@
     e.style.fontSize = (20 + Math.random() * 20) + "px";
     document.body.appendChild(e);
     setTimeout(() => e.remove(), 5000);
-  }}
+  }
 
   setInterval(createEmoji, 500);
 </script>
